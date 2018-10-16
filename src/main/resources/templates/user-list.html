@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<h1 th:text="${username}"></h1>
+	<h1 th:text="${age}"></h1>
+	<h1 th:utext="${desc}"></h1>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<td>项目名称</td>
+				<td>技术栈</td>
+				<td>职责</td>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="pro : ${projects}">
+				<td th:text="${pro.proName}"></td>
+				<td th:text="${pro.tech}"></td>
+				<td th:text="${pro.role}"></td>
+			</tr>
+			
+		</tbody>
+	</table>
+</body>
+</html>
