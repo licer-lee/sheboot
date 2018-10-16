@@ -63,7 +63,7 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getUser(@PathVariable Long id) {
+	public User getUser(@PathVariable String id) {
 		User u = userService.find(id);
 		return u;
 	}
@@ -78,7 +78,7 @@ public class UserRestController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public String putUser(@PathVariable String id, @ModelAttribute User user) {
 		user.setId(id);
-		userService.save(user);
+		userService.update(user, id);
 		return "success";
 	}
 
@@ -89,7 +89,7 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String deleteUser(@PathVariable Long id) {
+	public String deleteUser(@PathVariable String id) {
 		userService.delete(id);
 		return "success";
 	}

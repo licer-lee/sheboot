@@ -11,7 +11,7 @@ import com.licerlee.sheboot.web.domain.User;
 
 @Service
 // @Component // Component包含service
-public class UserService extends AbstractCommonService<User, Long> {
+public class UserService extends AbstractCommonService<User, String> {
 
 	
 	@Autowired
