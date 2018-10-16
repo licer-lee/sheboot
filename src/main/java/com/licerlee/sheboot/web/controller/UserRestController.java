@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,17 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.licerlee.sheboot.web.domain.User;
 import com.licerlee.sheboot.web.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Users restful api 标题：基于RBAC的基础权限框架demo 功能： 描述：
  * 
  * @author liwc
  * @date 2018年8月20日 上午10:23:38 @ UserController
  */
+@Slf4j // 使用lombok注解实现logging，直接使用log
 @RestController
 @RequestMapping("/users")
 public class UserRestController {
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	public UserService userService;
@@ -37,10 +40,12 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
+	@Cacheable(value="user-list-key")
 	public List<User> getUserList(Model model) {
 
 		List<User> r = userService.findAll();
-		logger.info(""+ r);
+		log.debug("user list ==> {}", r);
+		
 		return r;
 	}
 
