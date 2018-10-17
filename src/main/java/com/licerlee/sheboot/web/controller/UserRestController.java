@@ -40,7 +40,7 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	@Cacheable(value="user-list-key")
+//	@Cacheable(value="user-list-key")
 	public List<User> getUserList(Model model) {
 
 		List<User> r = userService.findAll();

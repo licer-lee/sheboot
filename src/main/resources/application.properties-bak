@@ -1,8 +1,9 @@
 spring.application.name=spring-data-jpa-demo
 
-
 server.port=8080
 
+# 排除热启动路径
+spring.devtools.restart.exclude =classpath:static/**, classpath:templates/**
 
 # 数据库访问配置
 spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
@@ -28,20 +29,20 @@ spring.jpa.hibernate.ddl-auto =create-drop
 #spring.jpa.properties。* = ＃要在JPA提供程序上设置的其他本机属性。
 # 启用SQL语句的日志记录。
 spring.jpa.show-sql = true
-spring.jpa.format-sql = true
 
 # logging
- # Location of the logging configuration file. For instance `classpath:logback.xml` for Logback
-logging.config=classpath:logback-boot.xml
+#logging.config=classpath:logback-boot.xml
 #logging.exception-conversion-word=%wEx # Conversion word used when logging exceptions.
-#logging.file= # Log file name. For instance `myapp.log`
-# Log levels severity mapping. For instance `logging.level.org.springframework=DEBUG`
-#logging.level.*=DEBUG 
-#logging.path= # Location of the log file. For instance `/var/log`
-#logging.pattern.console= # Appender pattern for output to the console. Only supported with the default logback setup.
-#logging.pattern.file= # Appender pattern for output to the file. Only supported with the default logback setup.
+logging.level.root=info
+#logging.pattern.console=%d %p (%file:%line\\)- %m%n
+
+logging.level.com.licerlee=debug
+#logging.path=d:\\log
+#logging.file=sheboot.log
+#logging.pattern.file=%d %p (%file:%line\\)- %m%n
 #logging.pattern.level= # Appender pattern for log level (default %5p). Only supported with the default logback setup.
 #logging.register-shutdown-hook=false # Register a shutdown hook for the logging system when it is initialized.
+
 
 
 # REDIS (RedisProperties)
