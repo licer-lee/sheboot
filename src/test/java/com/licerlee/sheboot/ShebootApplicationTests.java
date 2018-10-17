@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.licerlee.sheboot.web.dao.TaskDao;
+import com.licerlee.sheboot.web.dao.MenuDao;
 import com.licerlee.sheboot.web.dao.UserDao;
 import com.licerlee.sheboot.web.domain.Task;
 import com.licerlee.sheboot.web.domain.User;

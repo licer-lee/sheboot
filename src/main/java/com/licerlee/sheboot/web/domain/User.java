@@ -12,16 +12,27 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="t_user")
+@Entity(name="sys_user")
 public class User extends BaseEntity {
 
 	@Column(nullable = false)
-	private String name;
+	private String userName;
 
 	@Column(nullable = false)
 	private String passwd;
 
 	@Column(nullable = true)
-	private Integer age;
+	private String realName;
 
+	@Column
+	private Integer userStatus;
+	
+	@Column
+	private Integer userType;
+	
+	@Column
+	private String roles;
+	
+	@Column
+	private String profile;
 }

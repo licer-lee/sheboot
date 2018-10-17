@@ -8,28 +8,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.licerlee.sheboot.web.domain.User;
-import com.licerlee.sheboot.web.service.UserService;
+import com.licerlee.sheboot.web.domain.Menu;
+import com.licerlee.sheboot.web.service.MenuService;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Users restful api 标题：基于RBAC的基础权限框架demo 功能： 描述：
- * 
- * @author liwc
- * @date 2018年8月20日 上午10:23:38 @ UserController
- */
 @Slf4j // 使用lombok注解实现logging，直接使用log
 @RestController
-@RequestMapping("/users")
-public class UserRestController {
-
+@RequestMapping("/menus")
+public class MenuRestController {
 
 	@Autowired
-	public UserService userService;
+	public MenuService service;
 
 	/**
 	 * 处理"/users/"的GET请求，用来获取用户列表
@@ -37,12 +29,12 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
-//	@Cacheable(value="user-list-key")
-	public List<User> getUserList(Model model) {
+	// @Cacheable(value="user-list-key")
+	public List<Menu> getMenuList(Model model) {
 
-		List<User> r = userService.findAll();
-		log.debug("user list ==> {}", r);
-		
+		List<Menu> r = service.findAll();
+		log.debug("Menu list ==> {}", r);
+
 		return r;
 	}
 
@@ -53,8 +45,8 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String postUser(@ModelAttribute User user) {
-		userService.save(user);
+	public String postMenu(@ModelAttribute Menu entity) {
+		service.save(entity);
 		return "success";
 	}
 
@@ -65,8 +57,8 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getUser(@PathVariable String id) {
-		User u = userService.find(id);
+	public Menu findById(@PathVariable String id) {
+		Menu u = service.find(id);
 		return u;
 	}
 
@@ -78,9 +70,9 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public String putUser(@PathVariable String id, @ModelAttribute User user) {
-		user.setId(id);
-		userService.update(user, id);
+	public String putById(@PathVariable String id, @ModelAttribute Menu entity) {
+		entity.setId(id);
+		service.update(entity, id);
 		return "success";
 	}
 
@@ -91,14 +83,9 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public String deleteUser(@PathVariable String id) {
-		userService.delete(id);
+	public String deleteById(@PathVariable String id) {
+		service.delete(id);
 		return "success";
 	}
-	
-	@RequestMapping(value="/user", method= RequestMethod.POST)
-	public List<User> findByNameAndPasswd(@RequestParam String name, @RequestParam String passwd){
-		List<User> user = userService.findByNameAndPasswd(name, passwd);
-		return user;
-	}
+
 }
