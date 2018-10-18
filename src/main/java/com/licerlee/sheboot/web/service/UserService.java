@@ -25,7 +25,7 @@ public class UserService extends AbstractCommonService<User, String> {
 	}
 
 	
-	public List<User> findByNameAndPasswd(String name, String passwd){
-		return userDao.findByNameAndPasswd(name, passwd);
+	public List<User> findByUsernameAndPasswd(String name, String passwd){
+		return userDao.findByUserNameAndPasswd(name, passwd);
 	}
 }

@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.licerlee.sheboot.web.domain.Menu;
@@ -28,7 +31,7 @@ public class MenuRestController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping(value = "")
 	// @Cacheable(value="user-list-key")
 	public List<Menu> getMenuList(Model model) {
 
@@ -44,7 +47,7 @@ public class MenuRestController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@PostMapping(value = "")
 	public String postMenu(@ModelAttribute Menu entity) {
 		service.save(entity);
 		return "success";
@@ -56,7 +59,7 @@ public class MenuRestController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	public Menu findById(@PathVariable String id) {
 		Menu u = service.find(id);
 		return u;
@@ -69,7 +72,7 @@ public class MenuRestController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@PutMapping(value = "/{id}")
 	public String putById(@PathVariable String id, @ModelAttribute Menu entity) {
 		entity.setId(id);
 		service.update(entity, id);
@@ -82,7 +85,7 @@ public class MenuRestController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@DeleteMapping(value = "/{id}")
 	public String deleteById(@PathVariable String id) {
 		service.delete(id);
 		return "success";

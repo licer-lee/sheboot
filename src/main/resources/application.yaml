@@ -7,13 +7,21 @@ spring:
     hibernate: 
       ddl-auto: create-drop
     show-sql: true
-  # 数据库访问配置
+  # mysql数据库访问配置
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=true
+#    username: root
+#    password: root
+  # log4jdbc数据库访问配置
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=true
+    driverClassName: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=true
     username: root
     password: root
+    
   # redis 配置
   redis:
     database: 0 
@@ -25,6 +33,9 @@ spring:
     pool.max-idle: 8
     pool.min-idle: 0
     timeout: 0
+  output: 
+    ansi: 
+      enabled: DETECT
 
 server: 
   port: 8080
@@ -32,6 +43,7 @@ server:
 
 # logging
 logging:
+  config: classpath:logback-boot.xml
   level:
     root: info
     com: 

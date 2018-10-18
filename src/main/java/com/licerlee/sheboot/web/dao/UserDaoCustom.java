@@ -11,6 +11,6 @@ import com.licerlee.sheboot.web.domain.User;
  */
 public interface UserDaoCustom {
 
-	List<User> findByNameAndPasswd(String name, String passwd);
+	List<User> findByUserNameAndPasswd(String username, String passwd);
 
 }

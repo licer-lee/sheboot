@@ -98,7 +98,7 @@ public class UserRestController {
 	
 	@RequestMapping(value="/user", method= RequestMethod.POST)
 	public List<User> findByNameAndPasswd(@RequestParam String name, @RequestParam String passwd){
-		List<User> user = userService.findByNameAndPasswd(name, passwd);
+		List<User> user = userService.findByUsernameAndPasswd(name, passwd);
 		return user;
 	}
 }

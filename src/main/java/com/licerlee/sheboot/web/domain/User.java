@@ -1,7 +1,10 @@
 package com.licerlee.sheboot.web.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.licerlee.sheboot.common.domain.BaseEntity;
 
@@ -30,8 +33,11 @@ public class User extends BaseEntity {
 	@Column
 	private Integer userType;
 	
-	@Column
-	private String roles;
+	// 使用@ManyToOne 不能和@Column同用
+//	@Column
+	@ManyToOne(cascade = { CascadeType.ALL }) // 关联role
+	@JoinColumn(name="role_id") // join一个字段作为外键
+	private Role role;
 	
 	@Column
 	private String profile;

@@ -6,7 +6,8 @@
 	<!-- ConsoleAppender：把日志输出到控制台 -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d %p (%file:%line\)- %m%n</pattern>
+			<!-- <pattern>%d %p (%file:%line\)- %m%n</pattern> -->
+			<pattern>%d %-5p [%t] [%.30logger{50}] : %m %n</pattern>
 			<!-- 控制台也要使用UTF-8，不要使用GBK，否则会中文乱码 -->
 			<charset>UTF-8</charset>
 		</encoder>
@@ -53,4 +54,30 @@
 	<logger name="com.licerlee.sheboot" level="debug">
 		<appender-ref ref="demolog" />
 	</logger>
+	
+	<!--日志打印的包的范围，及分类日志文件存储 -->
+	<logger name="com.example" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 
+	<logger name="jdbc.sqlonly" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 
+	<logger name="jdbc.resultset" level="ERROR" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 
+	<logger name="jdbc.connection" level="OFF" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 
+	<logger name="jdbc.sqltiming" level="OFF" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+ 
+	<logger name="jdbc.audit" level="OFF" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger> 
+	
 </configuration>  
